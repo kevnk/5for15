@@ -23,5 +23,6 @@ html, body {
 }
 #app {
   text-align: center;
+  content: '';
 }
 </style>
