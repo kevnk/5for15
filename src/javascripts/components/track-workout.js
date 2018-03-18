@@ -18,16 +18,19 @@ var TrackWorkout = Vue.component('track-workout', {
     }
   },
   computed: {
-    workoutsComplete() {
-      let count = 0;
-      for (var i = 0; i < Object.keys(this.workouts).length; i++) {
-        let day = Object.keys(this.workouts)[i];
-        let workout = this.workouts[day];
-        if (workout.sets > 0 && workout.reps > 0) {
-          count += 1;
+    workoutsComplete: {
+      cache: false,
+      get() {
+        let count = 0;
+        for (var i = 0; i < Object.keys(this.workouts).length; i++) {
+          let day = Object.keys(this.workouts)[i];
+          let workout = this.workouts[day];
+          if (workout.sets != 0 && workout.reps != 0) {
+            count += 1;
+          }
         }
-      }
-      return count;
+        return count;
+      },
     },
     buttonText() {
       if (this.showCheck) return 'Saved';
@@ -97,7 +100,7 @@ var TrackWorkout = Vue.component('track-workout', {
               </div>
             </div>
             <div class="field">
-              <button class="button is-primary is-rounded is-medium" @click.prevent="save" @mouseleave="setTimeout(()=>{showCheck = false},1000)">
+              <button class="button is-primary is-rounded is-medium" @click.prevent="save" @mouseleave="setTimeout(()=>{showCheck = false},2000)">
                 <span>{{ buttonText }}</span>
                 <span v-if="showCheck" class="icon is-small">
                   <i class="fas fa-check"></i>
