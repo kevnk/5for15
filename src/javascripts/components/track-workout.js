@@ -73,7 +73,7 @@ var TrackWorkout = Vue.component('track-workout', {
   template: `
     <div class="track-workout section">
       <div class="container">
-        <div class="card">
+        <div class="card is-rounded">
           <header class="card-header">
             <div class="card-header-title is-centered">Track Your Workout</div>
           </header>
