@@ -1,1 +1,18 @@
 @import 'bulma/bulma';
+
+[hidden],
+[v-cloak] {
+  display: none;
+}
+
+.track-workout {
+  input {
+    max-width: 20em;
+    display: inherit;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .card {
+    margin-bottom: 1rem;
+  }
+}

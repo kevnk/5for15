@@ -21,8 +21,9 @@
     <noscript>
       <strong>We're sorry but 5for15 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app">
-      <todays-workout />
+    <div id="app" class="has-text-centered">
+      <div><todays-workout :workout="workout" :workout-day="workoutDay" /></div>
+      <div><track-workout :workout="workout" :workout-day="workoutDay" /></div>
     </div>
     {% block javascript %}
       <script src="https://cdn.jsdelivr.net/npm/vue"></script>
