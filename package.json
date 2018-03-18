@@ -4,6 +4,11 @@
   "private": true,
   "scripts": {
     "start": "yarn blendid",
-    "build": "yarn blendid -- build"
+    "build": "yarn blendid -- build",
+    "deploy": "yarn blendid -- ghPages"
+  },
+  "dependencies": {
+    "blendid": "^4.4.3",
+    "bulma": "^0.6.2"
   }
 }
