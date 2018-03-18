@@ -5,7 +5,7 @@
   "scripts": {
     "start": "yarn blendid",
     "build": "yarn blendid -- build",
-    "deploy": "yarn blendid -- ghPages"
+    "deploy": "yarn blendid -- gh-pages"
   },
   "dependencies": {
     "blendid": "^4.4.3",
