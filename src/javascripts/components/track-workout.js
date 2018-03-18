@@ -107,7 +107,7 @@ var TrackWorkout = Vue.component('track-workout', {
           </div>
         </div>
         <p class="has-text-grey-light">
-          Completed workouts: {{ workoutsComplete }}
+          Completed Workouts: {{ workoutsComplete }}
         </p>
       </div>
     </div>
