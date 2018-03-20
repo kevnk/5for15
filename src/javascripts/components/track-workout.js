@@ -56,8 +56,29 @@ var TrackWorkout = Vue.component('track-workout', {
       } catch (e) {}
       return Object.assign({}, workouts);
     },
+    canDecreaseSets() {
+      return parseFloat(this.sets) > 0;
+    },
+    canDecreaseReps() {
+      return parseFloat(this.reps) > 0;
+    },
+    canDecreaseWeight() {
+      return parseFloat(this.weight) > 0;
+    },
   },
   methods: {
+    updateSets(num) {
+      if (num < 0 && !this.canDecreaseSets) return;
+      this.sets += num;
+    },
+    updateReps(num) {
+      if (num < 0 && !this.canDecreaseReps) return;
+      this.reps += num;
+    },
+    updateWeight(num) {
+      if (num < 0 && !this.canDecreaseWeight) return;
+      this.weight = Math.round((this.weight + num) * 100) / 100;
+    },
     save() {
       this.hasSaved = true;
       this.showCheck = true;
@@ -81,23 +102,41 @@ var TrackWorkout = Vue.component('track-workout', {
             <div class="card-header-title is-centered">Track Your Workout</div>
           </header>
           <div class="card-content">
-            <div class="field">
-              <label for="sets" class="label"># Sets</label>
-              <div class="control">
-                <input v-model="sets" type="number" class="input" min="0" />
-              </div>
+            <label for="sets" class="label"># Sets</label>
+            <div class="field has-addons">
+              <p class="control">
+                <a @click.default="updateSets(-1)" :disabled="!canDecreaseSets" class="button is-rounded has-text-primary is-medium">-</a>
+              </p>
+              <p class="control">
+                <input v-model="sets" type="number" class="input is-medium" min="0" />
+              </p>
+              <p class="control">
+                <a @click.default="updateSets(1)" class="button is-rounded has-text-primary is-medium">+</a>
+              </p>
             </div>
-            <div class="field">
-              <label for="reps" class="label"># Reps</label>
-              <div class="control">
-                <input v-model="reps" type="number" class="input" min="0" />
-              </div>
+            <label for="reps" class="label"># Reps</label>
+            <div class="field has-addons">
+              <p class="control">
+                <a @click.default="updateReps(-1)" :disabled="!canDecreaseReps" class="button is-rounded has-text-primary is-medium">-</a>
+              </p>
+              <p class="control">
+                <input v-model="reps" type="number" class="input is-medium" min="0" />
+              </p>
+              <p class="control">
+                <a @click.default="updateReps(1)" class="button is-rounded has-text-primary is-medium">+</a>
+              </p>
             </div>
-            <div class="field">
-              <label for="weight" class="label">Extra Weight (lbs)</label>
-              <div class="control">
-                <input v-model="weight" type="number" class="input" min="0" step="0.1" />
-              </div>
+            <label for="weight" class="label">Extra Weight (lbs)</label>
+            <div class="field has-addons">
+              <p class="control">
+                <a @click.default="updateWeight(-0.1)" :disabled="!canDecreaseWeight" class="button is-rounded has-text-primary is-medium">-</a>
+              </p>
+              <p class="control">
+                <input v-model="weight" type="number" class="input is-medium" min="0" step="0.1" />
+              </p>
+              <p class="control">
+                <a @click.default="updateWeight(0.1)" class="button is-rounded has-text-primary is-medium">+</a>
+              </p>
             </div>
             <div class="field">
               <button class="button is-primary is-rounded is-medium" @click.prevent="save" @mouseleave="setTimeout(()=>{showCheck = false},2000)">
