@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 3.342px;
+        fill: #e35959;
+        text-anchor: middle;
+        font-family: "Font Awesome 5 Pro";
+      }
+    </style>
+  </defs>
+  <text id="times.svg" class="cls-1" transform="translate(10.096 22.341) scale(8.976)"><tspan x="0">times</tspan></text>
+</svg>
