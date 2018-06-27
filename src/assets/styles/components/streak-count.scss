@@ -1,0 +1,23 @@
+@import '../base';
+
+.streak-count {
+  line-height: 1.05;
+  font-size: 16.5px;
+  .icon-wrap {
+    float: left;
+    margin-right: 5px;
+    line-height: 60px;
+  }
+  .count {
+    position: relative;
+    top: 15px;
+  }
+  img,
+  svg {
+    height: 28px;
+    vertical-align: middle;
+  }
+  svg {
+    width: 12px;
+  }
+}

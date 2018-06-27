@@ -1,15 +1,21 @@
 <template>
   <div class="home">
     <div class="top-bar">
-      <streak-count />
-      {{ workoutMonth }}
-      {{ workoutYear }}
+      <div class="bar-item">
+        <streak-count />
+      </div>
+      <div class="bar-item month">
+        {{ workoutMonth }}
+      </div>
+      <div class="bar-item year">
+        {{ workoutYear }}
+      </div>
     </div>
     <calendar-slider />
-    <div v-if="!isDone">
+    <div v-if="!isDone" :class="['done-toggle', {'is-done': isDone}]">
       <a href="#" @click.prevent="toggleWorkout">
-        <div class="check" v-html="checkIcon"></div>
-        <div class="ff-hand">DONE</div>
+        <span class="check" v-html="checkIcon"></span>
+        <span class="ff-hand">DONE</span>
       </a>
       <last-workout />
     </div>
@@ -29,7 +35,7 @@ export default {
   data() {
     return {
       isDone: false,
-      checkIcon: `<img src="${require('@/assets/images/check.svg')}" />`,
+      checkIcon: `<img class="svg" src="${require('@/assets/images/check.svg')}" />`,
     };
   },
   computed: {
@@ -50,3 +56,6 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" src="@/assets/styles/pages/home.scss">
+</style>

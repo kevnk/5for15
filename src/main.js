@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import { name } from '../package.json';
+import replaceSVG from '@/utils/replaceSVG';
 
 Vue.config.productionTip = false;
 
@@ -17,5 +18,9 @@ new Vue({
   render: h => h(App),
   beforeCreate() {
     this.$store.commit('initialiseStore');
+  },
+  mounted() {
+    // TODO: just inline the svg's in the first place
+    replaceSVG();
   },
 }).$mount('#app');
