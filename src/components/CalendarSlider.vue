@@ -1,13 +1,13 @@
 <template>
   <div class="calendar-slider">
     <div class="inner">
-      <div class="two-days-out">
+      <div @click="setWorkoutDate(-2)" class="two-days-out">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ twoDaysBeforeWeekDay }}</div>
         <div class="date">{{ twoDaysBefore }}</div>
         <div class="workout-title">{{ twoDaysBeforeWorkout.title }}</div>
       </div>
-      <div class="one-day-out">
+      <div @click="setWorkoutDate(-1)" class="one-day-out">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ oneDayBeforeWeekDay }}</div>
         <div class="date">{{ oneDayBefore }}</div>
@@ -20,13 +20,13 @@
         <h1 class="workout-title">{{ workout.title }}</h1>
         <h1 class="workout-body">{{ workout.body }}</h1>
       </div>
-      <div class="one-day-out">
+      <div @click="setWorkoutDate(1)" class="one-day-out">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ oneDayAfterWeekDay }}</div>
         <div class="date">{{ oneDayAfter }}</div>
         <div class="workout-title">{{ oneDayAfterWorkout.title }}</div>
       </div>
-      <div class="two-days-out">
+      <div @click="setWorkoutDate(2)" class="two-days-out">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ twoDaysAfterWeekDay }}</div>
         <div class="date">{{ twoDaysAfter }}</div>
@@ -105,6 +105,11 @@ export default {
         workouts[this.$store.getters.twoDatesAfter.getDayOfYear() % 5] ||
         workoutPlaceholder
       );
+    },
+  },
+  methods: {
+    setWorkoutDate(diff) {
+      return this.$store.dispatch('setWorkoutDate', diff);
     },
   },
 };

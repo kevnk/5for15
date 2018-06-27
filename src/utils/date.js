@@ -44,3 +44,8 @@ Date.prototype.getDayOfYear = function() {
   var oneDay = 1000 * 60 * 60 * 24;
   return Math.floor(diff / oneDay);
 };
+
+Date.prototype.addDays = function(days) {
+  this.setDate(this.getDate() + days);
+  return this;
+};

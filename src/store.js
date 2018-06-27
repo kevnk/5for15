@@ -29,8 +29,15 @@ export default new Vuex.Store({
         );
       }
     },
+    setWorkoutDate(state, diff) {
+      state.workoutDate = new Date(state.workoutDate.addDays(diff));
+    },
   },
-  actions: {},
+  actions: {
+    setWorkoutDate(store, diff) {
+      this.commit('setWorkoutDate', diff);
+    },
+  },
   getters: {
     workoutMonth(state) {
       return state.workoutDate.getShortMonthName();
@@ -38,21 +45,17 @@ export default new Vuex.Store({
     workoutYear(state) {
       return state.workoutDate.getFullYear();
     },
-    oneDateBefore(state) {
-      let d = new Date(state.workoutDate);
-      return new Date(d.setDate(d.getDate() - 1));
-    },
     twoDatesBefore(state) {
-      let d = new Date(state.workoutDate);
-      return new Date(d.setDate(d.getDate() - 2));
+      return new Date(state.workoutDate.addDays(-2));
+    },
+    oneDateBefore(state) {
+      return new Date(state.workoutDate.addDays(-1));
     },
     oneDateAfter(state) {
-      let d = new Date(state.workoutDate);
-      return new Date(d.setDate(d.getDate() + 1));
+      return new Date(state.workoutDate.addDays(1));
     },
     twoDatesAfter(state) {
-      let d = new Date(state.workoutDate);
-      return new Date(d.setDate(d.getDate() + 2));
+      return new Date(state.workoutDate.addDays(2));
     },
   },
 });
