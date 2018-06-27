@@ -30,7 +30,7 @@ export default new Vuex.Store({
       }
     },
     setWorkoutDate(state, diff) {
-      state.workoutDate = new Date(state.workoutDate.addDays(diff));
+      state.workoutDate = state.workoutDate.addDays(diff);
     },
   },
   actions: {
@@ -46,16 +46,16 @@ export default new Vuex.Store({
       return state.workoutDate.getFullYear();
     },
     twoDatesBefore(state) {
-      return new Date(state.workoutDate.addDays(-2));
+      return state.workoutDate.addDays(-2);
     },
     oneDateBefore(state) {
-      return new Date(state.workoutDate.addDays(-1));
+      return state.workoutDate.addDays(-1);
     },
     oneDateAfter(state) {
-      return new Date(state.workoutDate.addDays(1));
+      return state.workoutDate.addDays(1);
     },
     twoDatesAfter(state) {
-      return new Date(state.workoutDate.addDays(2));
+      return state.workoutDate.addDays(2);
     },
   },
 });

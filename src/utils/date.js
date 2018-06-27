@@ -46,6 +46,7 @@ Date.prototype.getDayOfYear = function() {
 };
 
 Date.prototype.addDays = function(days) {
-  this.setDate(this.getDate() + days);
-  return this;
+  let d = new Date(this);
+  d.setDate(d.getDate() + days);
+  return d;
 };
