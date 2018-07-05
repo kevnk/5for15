@@ -5,10 +5,16 @@ require('@/utils/date');
 
 Vue.use(Vuex);
 
+const WORKOUT = {};
+const WORKOUTS = {};
+WORKOUTS[new Date().toISODateString()] = WORKOUT;
+let TODAY = new Date();
+TODAY.setHours(23, 59, 59);
+
 export default new Vuex.Store({
   state: {
-    workoutDate: new Date(),
-    workouts: {},
+    workoutDate: TODAY,
+    workouts: WORKOUTS,
     version: version,
   },
   mutations: {
@@ -30,12 +36,25 @@ export default new Vuex.Store({
       }
     },
     setWorkoutDate(state, diff) {
-      state.workoutDate = state.workoutDate.addDays(diff);
+      let workoutDate = state.workoutDate.addDays(diff);
+      let now = new Date();
+      now.setHours(24, 0, 0);
+      if (now.getTime() > workoutDate.getTime()) {
+        state.workoutDate = workoutDate;
+      }
+    },
+    toggleWorkout(state, isDone) {
+      let workout = this.getters.workout;
+      workout.isDone = isDone;
+      state.workouts[state.workoutDate.toISODateString()] = workout;
     },
   },
   actions: {
     setWorkoutDate(store, diff) {
       this.commit('setWorkoutDate', diff);
+    },
+    toggleWorkout(store, isDone) {
+      this.commit('toggleWorkout', isDone);
     },
   },
   getters: {
@@ -56,6 +75,12 @@ export default new Vuex.Store({
     },
     twoDatesAfter(state) {
       return state.workoutDate.addDays(2);
+    },
+    workout(state) {
+      return state.workouts[state.workoutDate.toISODateString()] || WORKOUT;
+    },
+    isDone(state, getters) {
+      return getters.workout.isDone;
     },
   },
 });

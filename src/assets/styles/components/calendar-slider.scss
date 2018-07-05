@@ -17,6 +17,9 @@
     > div {
       padding: 0 1rem;
       position: relative;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   .two-days-out {
@@ -52,6 +55,9 @@
       font-weight: 200;
       letter-spacing: 1px;
       opacity: 0.85;
+    }
+    &:hover {
+      cursor: default !important;
     }
   }
 }

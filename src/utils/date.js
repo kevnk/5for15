@@ -50,3 +50,12 @@ Date.prototype.addDays = function(days) {
   d.setDate(d.getDate() + days);
   return d;
 };
+
+Date.prototype.toISODateString = function() {
+  let yyyy = this.getFullYear();
+  let m = `${this.getMonth() + 1}`;
+  let d = `${this.getDate()}`;
+  let mm = m.length === 1 ? `0${m}` : m;
+  let dd = d.length === 1 ? `0${d}` : d;
+  return `${yyyy}-${mm}-${dd}`;
+};

@@ -34,7 +34,6 @@ export default {
   name: 'home',
   data() {
     return {
-      isDone: false,
       checkIcon: `<img class="svg" src="${require('@/assets/images/check.svg')}" />`,
     };
   },
@@ -45,6 +44,9 @@ export default {
     workoutYear() {
       return this.$store.getters.workoutYear;
     },
+    isDone() {
+      return this.$store.getters.isDone;
+    },
   },
   components: {
     'streak-count': StreakCount,
@@ -52,7 +54,9 @@ export default {
     'last-workout': LastWorkout,
   },
   methods: {
-    toggleWorkout() {},
+    toggleWorkout() {
+      this.$store.dispatch('toggleWorkout', !this.isDone);
+    },
   },
 };
 </script>
