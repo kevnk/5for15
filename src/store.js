@@ -13,7 +13,6 @@ TODAY.setHours(23, 59, 59);
 
 export default new Vuex.Store({
   state: {
-    workout: WORKOUT,
     workoutDate: TODAY,
     workouts: WORKOUTS,
     version: version,

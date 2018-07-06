@@ -1,4 +1,4 @@
-export const workouts = [
+export const WORKOUTS = [
   {
     title: 'Pull-ups',
     body: 'wide / narrow / static',
@@ -21,7 +21,7 @@ export const workouts = [
   },
 ];
 
-export const workoutPlaceholder = {
+export const WORKOUT_PLACEHOLDER = {
   title: '--',
   body: '--',
 };

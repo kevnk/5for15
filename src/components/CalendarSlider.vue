@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { workouts, workoutPlaceholder } from '../workouts';
+import { WORKOUTS, WORKOUT_PLACEHOLDER } from '../workouts';
 export default {
   name: 'CalendarSlider',
 
@@ -93,32 +93,32 @@ export default {
     },
     twoDaysBeforeWorkout() {
       return (
-        workouts[this.$store.getters.twoDatesBefore.getDayOfYear() % 5] ||
-        workoutPlaceholder
+        WORKOUTS[this.$store.getters.twoDatesBefore.getDayOfYear() % 5] ||
+        WORKOUT_PLACEHOLDER
       );
     },
     oneDayBeforeWorkout() {
       return (
-        workouts[this.$store.getters.oneDateBefore.getDayOfYear() % 5] ||
-        workoutPlaceholder
+        WORKOUTS[this.$store.getters.oneDateBefore.getDayOfYear() % 5] ||
+        WORKOUT_PLACEHOLDER
       );
     },
     workout() {
       return (
-        workouts[this.$store.state.workoutDate.getDayOfYear() % 5] ||
-        workoutPlaceholder
+        WORKOUTS[this.$store.state.workoutDate.getDayOfYear() % 5] ||
+        WORKOUT_PLACEHOLDER
       );
     },
     oneDayAfterWorkout() {
       return (
-        workouts[this.$store.getters.oneDateAfter.getDayOfYear() % 5] ||
-        workoutPlaceholder
+        WORKOUTS[this.$store.getters.oneDateAfter.getDayOfYear() % 5] ||
+        WORKOUT_PLACEHOLDER
       );
     },
     twoDaysAfterWorkout() {
       return (
-        workouts[this.$store.getters.twoDatesAfter.getDayOfYear() % 5] ||
-        workoutPlaceholder
+        WORKOUTS[this.$store.getters.twoDatesAfter.getDayOfYear() % 5] ||
+        WORKOUT_PLACEHOLDER
       );
     },
   },
