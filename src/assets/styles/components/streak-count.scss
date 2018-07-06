@@ -12,12 +12,10 @@
     position: relative;
     top: 15px;
   }
-  img,
   svg {
     height: 28px;
     vertical-align: middle;
-  }
-  svg {
     width: 12px;
+    fill: $teal;
   }
 }

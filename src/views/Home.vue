@@ -14,7 +14,7 @@
     <calendar-slider />
     <div v-if="!isDone" :class="['done-toggle', {'is-done': isDone}]">
       <a href="#" @click.prevent="toggleWorkout">
-        <span class="check" v-html="checkIcon"></span>
+        <span class="check"><check-icon /></span>
         <span class="ff-hand">DONE</span>
       </a>
       <last-workout />
@@ -26,16 +26,22 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import StreakCount from '@/components/StreakCount.vue';
 import CalendarSlider from '@/components/CalendarSlider.vue';
 import LastWorkout from '@/components/LastWorkout.vue';
+const CheckIcon = Vue.component(
+  'check-icon',
+  require('@/assets/images/check-regular.svg')
+);
 
 export default {
   name: 'home',
+  components: {
+    CheckIcon,
+  },
   data() {
-    return {
-      checkIcon: `<img class="svg" src="${require('@/assets/images/check.svg')}" />`,
-    };
+    return {};
   },
   computed: {
     workoutMonth() {
