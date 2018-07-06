@@ -21,18 +21,6 @@
         cursor: pointer;
       }
       &.is-today {
-        &:after {
-          content: '';
-          display: block;
-          position: absolute;
-          height: 7px;
-          width: 7px;
-          background: $blue;
-          bottom: -33px;
-          left: 50%;
-          transform: translate(-50%, 0);
-          border-radius: 100%;
-        }
         & ~ div {
           cursor: default;
           .icon {
@@ -44,11 +32,6 @@
       }
       &.workout-day {
         cursor: default;
-        &.is-today {
-          &:after {
-            bottom: -14px;
-          }
-        }
       }
     }
     .icon {
