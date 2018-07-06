@@ -12,7 +12,7 @@
       </div>
     </div>
     <calendar-slider />
-    <div v-if="!isDone" :class="['done-toggle', {'is-done': isDone}]">
+    <div v-if="!workout.isDone" :class="['done-toggle', {'is-done': workout.isDone}]">
       <a href="#" @click.prevent="toggleWorkout">
         <span class="check"><check-icon /></span>
         <span class="ff-hand">DONE</span>
@@ -50,8 +50,8 @@ export default {
     workoutYear() {
       return this.$store.getters.workoutYear;
     },
-    isDone() {
-      return this.$store.getters.isDone;
+    workout() {
+      return this.$store.getters.workout;
     },
   },
   components: {
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     toggleWorkout() {
-      this.$store.dispatch('toggleWorkout', !this.isDone);
+      this.$store.dispatch('toggleWorkout', !this.workout.isDone);
     },
   },
 };

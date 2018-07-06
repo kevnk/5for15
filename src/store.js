@@ -13,6 +13,7 @@ TODAY.setHours(23, 59, 59);
 
 export default new Vuex.Store({
   state: {
+    workout: WORKOUT,
     workoutDate: TODAY,
     workouts: WORKOUTS,
     version: version,
@@ -44,9 +45,11 @@ export default new Vuex.Store({
       }
     },
     toggleWorkout(state, isDone) {
-      let workout = this.getters.workout;
-      workout.isDone = isDone;
-      state.workouts[state.workoutDate.toISODateString()] = workout;
+      Vue.set(
+        state.workouts,
+        state.workoutDate.toISODateString(),
+        Object.assign({}, this.getters.workout, { isDone: isDone })
+      );
     },
   },
   actions: {
@@ -78,9 +81,6 @@ export default new Vuex.Store({
     },
     workout(state) {
       return state.workouts[state.workoutDate.toISODateString()] || WORKOUT;
-    },
-    isDone(state, getters) {
-      return getters.workout.isDone;
     },
   },
 });
