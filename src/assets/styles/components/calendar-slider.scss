@@ -35,6 +35,11 @@
         }
         & ~ div {
           cursor: default;
+          .icon {
+            svg {
+              display: none;
+            }
+          }
         }
       }
       &.workout-day {
@@ -42,6 +47,25 @@
         &.is-today {
           &:after {
             bottom: -14px;
+          }
+        }
+      }
+    }
+    .icon {
+      line-height: 20px;
+      display: block;
+      height: 20px;
+      svg {
+        width: 10px;
+        height: 10px;
+        &.is-done {
+          path {
+            fill: $teal;
+          }
+        }
+        &.isnt-done {
+          path {
+            fill: $red;
           }
         }
       }
