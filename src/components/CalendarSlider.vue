@@ -1,32 +1,32 @@
 <template>
   <div class="calendar-slider">
     <div class="inner">
-      <div @click="setWorkoutDate(-2)" class="two-days-out">
+      <div @click="setWorkoutDate(-2)" :class="['workout', 'two-days-out', {'is-today': twoDaysBeforeIsToday}]">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ twoDaysBeforeWeekDay }}</div>
         <div class="date">{{ twoDaysBefore }}</div>
         <div class="workout-title">{{ twoDaysBeforeWorkout.title }}</div>
       </div>
-      <div @click="setWorkoutDate(-1)" class="one-day-out">
+      <div @click="setWorkoutDate(-1)" :class="['workout', 'one-day-out', {'is-today': oneDayBeforeIsToday}]">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ oneDayBeforeWeekDay }}</div>
         <div class="date">{{ oneDayBefore }}</div>
         <div class="workout-title">{{ oneDayBeforeWorkout.title }}</div>
       </div>
-      <div class="workout-day">
+      <div :class="['workout', 'workout-day', {'is-today': workoutDayIsToday}]">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ workoutWeekDay }}</div>
         <div class="date">{{ workoutDay }}</div>
         <h1 class="workout-title">{{ workout.title }}</h1>
         <h1 class="workout-body">{{ workout.body }}</h1>
       </div>
-      <div @click="setWorkoutDate(1)" class="one-day-out">
+      <div @click="setWorkoutDate(1)" :class="['workout', 'one-day-out', {'is-today': oneDayAfterIsToday}]">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ oneDayAfterWeekDay }}</div>
         <div class="date">{{ oneDayAfter }}</div>
         <div class="workout-title">{{ oneDayAfterWorkout.title }}</div>
       </div>
-      <div @click="setWorkoutDate(2)" class="two-days-out">
+      <div @click="setWorkoutDate(2)" :class="['workout', 'two-days-out', {'is-today': twoDaysAfterIsToday}]">
         <div class="icon">&nbsp;</div>
         <div class="week-day">{{ twoDaysAfterWeekDay }}</div>
         <div class="date">{{ twoDaysAfter }}</div>
@@ -60,6 +60,21 @@ export default {
     },
     twoDaysAfter() {
       return this.$store.getters.twoDatesAfter.getDate();
+    },
+    twoDaysBeforeIsToday() {
+      return this.isToday(this.$store.getters.twoDatesBefore);
+    },
+    oneDayBeforeIsToday() {
+      return this.isToday(this.$store.getters.oneDateBefore);
+    },
+    workoutDayIsToday() {
+      return this.isToday(this.$store.state.workoutDate);
+    },
+    oneDayAfterIsToday() {
+      return this.isToday(this.$store.getters.oneDateAfter);
+    },
+    twoDaysAfterIsToday() {
+      return this.isToday(this.$store.getters.twoDatesAfter);
     },
     twoDaysBeforeWeekDay() {
       return this.$store.getters.twoDatesBefore.getWeekDay().substr(0, 1);
@@ -110,6 +125,11 @@ export default {
   methods: {
     setWorkoutDate(diff) {
       return this.$store.dispatch('setWorkoutDate', diff);
+    },
+    isToday(workoutDate) {
+      return (
+        new Date().toISODateString() === new Date(workoutDate).toISODateString()
+      );
     },
   },
 };

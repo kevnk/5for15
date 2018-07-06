@@ -14,11 +14,36 @@
     text-align: center;
     white-space: nowrap;
     text-transform: uppercase;
-    > div {
+    .workout {
       padding: 0 1rem;
       position: relative;
       &:hover {
         cursor: pointer;
+      }
+      &.is-today {
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          height: 7px;
+          width: 7px;
+          background: $blue;
+          bottom: -33px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          border-radius: 100%;
+        }
+        & ~ div {
+          cursor: default;
+        }
+      }
+      &.workout-day {
+        cursor: default;
+        &.is-today {
+          &:after {
+            bottom: -14px;
+          }
+        }
       }
     }
   }
@@ -55,9 +80,6 @@
       font-weight: 200;
       letter-spacing: 1px;
       opacity: 0.85;
-    }
-    &:hover {
-      cursor: default !important;
     }
   }
 }
