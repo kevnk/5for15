@@ -81,5 +81,29 @@ export default new Vuex.Store({
     workout(state) {
       return state.workouts[state.workoutDate.toISODateString()] || WORKOUT;
     },
+    streak(state) {
+      let streak = 0;
+      let today = new Date().toISODateString();
+      let lastDate = new Date(today).toISODateString();
+      Object.keys(state.workouts)
+        .sort()
+        .reverse()
+        .forEach((theDate, index) => {
+          let workoutIsDone = state.workouts[theDate].isDone;
+          if (workoutIsDone) {
+            if (theDate == today) {
+              streak++;
+            }
+            if (lastDate == theDate) {
+              streak++;
+              let d = new Date(theDate);
+              d.setHours(19, 0, 0);
+              d.addDays(-1);
+              lastDate = d.toISODateString();
+            }
+          }
+        });
+      return streak;
+    },
   },
 });

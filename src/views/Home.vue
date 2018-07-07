@@ -12,15 +12,12 @@
       </div>
     </div>
     <calendar-slider />
-    <div v-if="!workout.isDone" :class="['done-toggle', {'is-done': workout.isDone}]">
+    <div :class="['done-toggle', {'is-done': workout.isDone}]">
       <a href="#" @click.prevent="toggleWorkout">
         <span class="check"><check-icon /></span>
         <span class="ff-hand">DONE</span>
       </a>
       <last-workout />
-    </div>
-    <div v-else>
-      Set
     </div>
   </div>
 </template>

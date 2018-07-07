@@ -1,7 +1,7 @@
 <template>
   <div class="streak-count">
     <div class="icon-wrap"><bolt-icon /></div>
-    <div class="count">{{ count }} {{ day }}<br>streak</div>
+    <div class="count">{{ count }} day<br>streak</div>
   </div>
 </template>
 
@@ -24,10 +24,7 @@ export default {
   },
   computed: {
     count() {
-      return '#';
-    },
-    day() {
-      return this.count === 1 ? 'day' : 'days';
+      return this.$store.getters.streak;
     },
   },
 };
