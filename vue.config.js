@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: process.env.NODE_ENV === 'production' ? '/5for15' : '',
   chainWebpack: config => {
     const svgRule = config.module.rule('svg');
 
