@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { version, name } from '../package.json';
+import { countStreak } from '@/utils/streak';
 require('@/utils/date');
 
 Vue.use(Vuex);
@@ -82,28 +83,7 @@ export default new Vuex.Store({
       return state.workouts[state.workoutDate.toISODateString()] || WORKOUT;
     },
     streak(state) {
-      let streak = 0;
-      let today = new Date().toISODateString();
-      let lastDate = new Date(today).toISODateString();
-      Object.keys(state.workouts)
-        .sort()
-        .reverse()
-        .forEach((theDate, index) => {
-          let workoutIsDone = state.workouts[theDate].isDone;
-          if (workoutIsDone) {
-            if (theDate == today) {
-              streak++;
-            }
-            if (lastDate == theDate) {
-              streak++;
-              let d = new Date(theDate);
-              d.setHours(19, 0, 0);
-              d.addDays(-1);
-              lastDate = d.toISODateString();
-            }
-          }
-        });
-      return streak;
+      return countStreak(state.workouts);
     },
   },
 });
